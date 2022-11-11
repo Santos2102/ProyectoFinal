@@ -22,7 +22,6 @@
 
 <body class="fondo">
     <header>
-    <!-- @include('dashboard.partials.nav-header-mainAD') -->
 
 
     <h1 class="titulo">Edición de Productos</h1>
@@ -35,7 +34,7 @@
         <div class="container">
             <form action="{{route('producto.update',$producto->id)}}" method="post">
                 @method('PUT')
-                @include('dashboard.producto._form')
+                @include('dashboard.partials._form')
             </form>   
         </div>
     </main>

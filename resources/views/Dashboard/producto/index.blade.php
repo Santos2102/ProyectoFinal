@@ -15,7 +15,6 @@
 </head>
 <body style="background-image: url('/Assets/Image/fondo.jpg');background-attachment: fixed;">
     <header >
-       <!--  @include('dashboard.partials.nav-header-mainAD') -->
         <a class="btn btn-primary" href="{{route('producto.create')}}">Crear</a>
     </header>    
 
@@ -80,7 +79,7 @@
                                 {{$producto->stock}}
                             </td>
                             <td>
-                                <img src="Assets/Image/{{$producto->imagen}}" width="150">
+                                <img src="Assets/Productos/{{$producto->image}}" width="150">
                             </td>
                             <td>
                                 {{$producto->created_at->format('d-m-Y')}}

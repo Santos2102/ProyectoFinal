@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductoPost;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class ProductoController extends Controller
     public function index()
     {
         //
-        echo ("Hola mundo");
+        $producto=Producto::orderby('created_at','asc') -> cursorpaginate(5);
+        echo view ('dashboard.producto.index',['producto'=>$producto]);
     }
 
     /**
@@ -27,6 +29,7 @@ class ProductoController extends Controller
     public function create()
     {
         //
+        echo view ('dashboard.producto.create',["producto"=> new producto()]);
     }
 
     /**
@@ -35,10 +38,11 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductoPost $request)
     {
         //
-        
+        Producto::create($request->validated());
+        return back()->with('status','Producto creado exitosamente');
     }
 
     /**
@@ -62,6 +66,7 @@ class ProductoController extends Controller
     public function edit(Producto $producto)
     {
         //
+        echo view ('dashboard.producto.edit',["producto"=>$producto]);
     }
 
     /**
@@ -71,9 +76,11 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(StoreProductoPost $request, Producto $producto)
     {
         //
+        $producto->update($request->validated());
+        return back()->with('status','Gracias, Producto actualizado exitosamente');
     }
 
     /**
@@ -85,5 +92,7 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         //
+        $producto->delete();
+        return back()->with('status','Gracias, Producto borrado exitosamente');
     }
 }

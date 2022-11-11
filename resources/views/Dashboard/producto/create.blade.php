@@ -22,9 +22,7 @@
 
 <body class="fondo">
     <header>
-    <!-- @include('dashboard.partials.nav-header-mainAD') -->
-
-
+    
     <h1 class="titulo">Ingreso de productos</h1>
     <br> <br>
 
@@ -34,7 +32,7 @@
     <main>
         <div class="container">
             <form action="{{route('producto.store')}}" method="post">
-                @include('dashboard.producto._form')
+                @include('dashboard.partials._form')
             </form>   
         </div>
     </main>
